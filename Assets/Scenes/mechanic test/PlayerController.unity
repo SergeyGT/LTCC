@@ -3330,11 +3330,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   _speedWalk: 3
-  _speedRun: 7
+  _speedRun: 6
   _cameraRotate: {fileID: 446344667}
   _currentSpeed: 0
-  _acceleration: 0.7
+  _acceleration: 0.8
   _gravityForce: -2
+  _jumpForce: 2.5
 --- !u!143 &519666662
 CharacterController:
   m_ObjectHideFlags: 0

@@ -86,6 +86,15 @@
                     "processors": "",
                     "interactions": "Hold(duration=0.1,pressPoint=0.5)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Turnover",
+                    "type": "Button",
+                    "id": "849fe5d4-b806-421b-b1f9-e312e11afa1a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -471,6 +480,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77e44560-e89d-448a-8126-0ec929e61833",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Turnover",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be920cf0-fe73-4fb9-a2c9-f90c92c6a909",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Turnover",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
