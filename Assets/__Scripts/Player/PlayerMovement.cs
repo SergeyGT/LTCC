@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _cameraRotate;
     [SerializeField] private float _currentSpeed;
     [SerializeField] private float _acceleration;
+    [SerializeField] private float _gravityForce;
     
     private CharacterController _controller;
     private Vector3 _moveDirection;
@@ -56,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     private void ReadMovement()
     {
         var directionInput = _playerInput.Player.Move.ReadValue<Vector2>();
-        Vector3 moveDirection = new Vector3(directionInput.x, 0f, directionInput.y);
+        Vector3 moveDirection = new Vector3(directionInput.x, _gravityForce, directionInput.y);
         
         if (_cameraRotate != null)
             _moveDirection = Quaternion.Euler(0, _cameraRotate.eulerAngles.y, 0) * moveDirection;
@@ -76,6 +77,13 @@ public class PlayerMovement : MonoBehaviour
     {
         UpdateSpeed();
         Move();
+        Rotate();
+    }
+
+    private void Rotate()
+    {
+        var rotateBody = new Vector3(0, _cameraRotate.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Euler(rotateBody);
     }
     
     private void Move()
