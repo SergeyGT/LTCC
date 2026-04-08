@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
+    [SerializeField] private Transform _cameraRotate;
     private CharacterController _controller;
     private Vector3 _moveDirection;
     private PlayerInput _playerInput;
@@ -17,15 +18,6 @@ public class PlayerMovement : MonoBehaviour
         _controller = GetComponent<CharacterController>();
     }
 
-    private void OnEnable()
-    {
-    }
-
-    private void OnDisable()
-    {
-    }
-
-
     private void Update()
     {
         ReadMovement();
@@ -34,7 +26,9 @@ public class PlayerMovement : MonoBehaviour
     private void ReadMovement()
     {
         var directionInput = _playerInput.Player.Move.ReadValue<Vector2>();
-        _moveDirection = new Vector3(directionInput.x, 0f, directionInput.y);
+        Vector3 moveDirection = new Vector3(directionInput.x, 0f, directionInput.y);
+
+        _moveDirection = Quaternion.Euler(0, _cameraRotate.eulerAngles.y, 0) * moveDirection;
     }
 
     private void FixedUpdate()
