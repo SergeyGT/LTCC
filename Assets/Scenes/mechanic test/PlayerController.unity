@@ -448,6 +448,8 @@ MonoBehaviour:
   _speedWalk: 3
   _speedRun: 7
   _cameraRotate: {fileID: 446344667}
+  _currentSpeed: 0
+  _acceleration: 0
 --- !u!143 &519666662
 CharacterController:
   m_ObjectHideFlags: 0
