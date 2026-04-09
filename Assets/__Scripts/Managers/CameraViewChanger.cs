@@ -1,25 +1,43 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using __Scripts.Player;
 using NUnit.Framework;
 using UnityEngine;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
+using UnityEngine.Events;
+using Camera = __Scripts.Cameras.Camera;
 
 public class CameraViewChanger : MonoBehaviour
 {
+    public static event UnityAction<string> changeCameraView;
+    public static event UnityAction<Transform> changeCameraRotate;
+    
     [SerializeField] private List<CinemachineCamera> _virtualCameras;
     private CinemachineCamera _currentCamera => FindCameraWithHighPriority();
+
+    private void Awake()
+    {
+        TriggerCameraViewOnchangeCamera(_currentCamera);
+    }
 
     private void OnEnable()
     {
         TriggerCameraView.changeCamera += TriggerCameraViewOnchangeCamera;
     }
 
+    private void OnDisable()
+    {
+        TriggerCameraView.changeCamera -= TriggerCameraViewOnchangeCamera;
+    }
+
     private void TriggerCameraViewOnchangeCamera(CinemachineCamera _camera)
     {
         CinemachineCamera currentCamera = FindCameraWithHighPriority();
         (currentCamera.Priority, _camera.Priority) = (_camera.Priority, currentCamera.Priority);
+        changeCameraView?.Invoke(_camera.GetComponent<Camera>().GetSideCamera());
+        changeCameraRotate?.Invoke(_camera.GetComponent<Transform>());
     }
 
     private CinemachineCamera FindCameraWithHighPriority()
