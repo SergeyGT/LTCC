@@ -3351,6 +3351,7 @@ MonoBehaviour:
   _gravityForce: -2.5
   _jumpForce: 5
   _senseMoving: 0.1
+  _rotationSpeed: 540
 --- !u!143 &519666662
 CharacterController:
   m_ObjectHideFlags: 0

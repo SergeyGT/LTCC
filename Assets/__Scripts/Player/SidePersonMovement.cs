@@ -10,8 +10,6 @@ namespace __Scripts.Player
         
         public Quaternion Rotation(Transform cameraRotate)
         {
-            Debug.DrawRay(_moveDirection, Vector3.up, Color.red);
-            Debug.Log("RotateSide");
             Vector3 horizontalDirection = new Vector3(_moveDirection.x, 0f, _moveDirection.z);
 
             if (horizontalDirection.sqrMagnitude > 0.01f)

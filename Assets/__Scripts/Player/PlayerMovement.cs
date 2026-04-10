@@ -16,12 +16,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _gravityForce;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _senseMoving;
+    [SerializeField] private float _rotationSpeed = 540f;
     
     private CharacterController _controller;
     private IPlayerMovement _currentMovement;
     private Vector3 _moveDirection;
     private PlayerInput _playerInput;
     private float _targetSpeed;
+    private Quaternion _targetRotation;
     private float _verticalVelocity;
     
     private void Awake()
@@ -84,9 +86,27 @@ public class PlayerMovement : MonoBehaviour
     {
         _cameraRotate =  newCamera;
     }
-    
-    private void Update() => ReadMove();
 
+    private void Update()
+    {
+        ReadMove();
+        RotateCharacter();
+    }
+
+    private void RotateCharacter()
+    {
+        if (_moveDirection.magnitude > 0.1f)
+        {
+            _targetRotation = _currentMovement.Rotation(_cameraRotate);
+        }
+        
+        transform.rotation = Quaternion.RotateTowards(
+            transform.rotation, 
+            _targetRotation, 
+            _rotationSpeed * Time.deltaTime 
+        );
+    }
+    
     private void ReadMove()
     {
         Vector2 input =  _playerInput.Player.Move.ReadValue<Vector2>();
@@ -136,6 +156,5 @@ public class PlayerMovement : MonoBehaviour
     {
         UpdateSpeed();
         Move();
-        transform.rotation = _currentMovement.Rotation(_cameraRotate);
     }
 }
