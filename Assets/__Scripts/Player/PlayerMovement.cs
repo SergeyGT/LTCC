@@ -1,4 +1,8 @@
 using System;
+using System.Collections.Generic;
+using __Scripts.Player;
+using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,11 +15,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _acceleration;
     [SerializeField] private float _gravityForce;
     [SerializeField] private float _jumpForce;
+    [SerializeField] private float _senseMoving;
+    [SerializeField] private float _rotationSpeed = 540f;
     
     private CharacterController _controller;
+    private IPlayerMovement _currentMovement;
     private Vector3 _moveDirection;
     private PlayerInput _playerInput;
     private float _targetSpeed;
+    private Quaternion _targetRotation;
     private float _verticalVelocity;
     
     private void Awake()
@@ -26,14 +34,19 @@ public class PlayerMovement : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _currentSpeed = _speedWalk;
         _targetSpeed = _speedWalk;
+        _currentMovement = gameObject.AddComponent<FirstPersonMovement>();
     }
 
+    
     private void OnEnable()
     {
         _playerInput.Player.Sprint.performed += StartSprint;
         _playerInput.Player.Sprint.canceled += StopSprint;
 
         _playerInput.Player.Jump.performed += Jump;
+
+        ChangerMovement.changeMovement += SwitchMovement;
+        CameraViewChanger.changeCameraRotate += ChangeCamera;
     }
 
     private void OnDisable()
@@ -42,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
         _playerInput.Player.Sprint.canceled -= StopSprint;
         
         _playerInput.Player.Jump.performed -= Jump;
+        
+        ChangerMovement.changeMovement -= SwitchMovement;
+        CameraViewChanger.changeCameraRotate -= ChangeCamera;
         
         _playerInput.Disable();
     }
@@ -59,27 +75,59 @@ public class PlayerMovement : MonoBehaviour
     private void Jump(InputAction.CallbackContext ctx)
     {
        if(_controller.isGrounded) _verticalVelocity = _jumpForce;
-    } 
+    }
     
-    private void Update() => ReadMovement();
-    
-    private void ReadMovement()
+    private void SwitchMovement(IPlayerMovement newMovement)
     {
-        var directionInput = _playerInput.Player.Move.ReadValue<Vector2>();
+        _currentMovement = newMovement;
+    }
 
-        _verticalVelocity += _gravityForce * Time.fixedDeltaTime;
+    private void ChangeCamera(Transform newCamera)
+    {
+        _cameraRotate =  newCamera;
+    }
+
+    private void Update()
+    {
+        ReadMove();
+        RotateCharacter();
+    }
+
+    private void RotateCharacter()
+    {
+        if (_moveDirection.magnitude > 0.1f)
+        {
+            _targetRotation = _currentMovement.Rotation(_cameraRotate);
+        }
         
-        Vector3 moveDirection = new Vector3(directionInput.x, _verticalVelocity, directionInput.y);
+        transform.rotation = Quaternion.RotateTowards(
+            transform.rotation, 
+            _targetRotation, 
+            _rotationSpeed * Time.deltaTime 
+        );
+    }
+    
+    private void ReadMove()
+    {
+        Vector2 input =  _playerInput.Player.Move.ReadValue<Vector2>();
         
-        if (_cameraRotate != null)
-            _moveDirection = Quaternion.Euler(0, _cameraRotate.eulerAngles.y, 0) * moveDirection;
-        else
-            _moveDirection = moveDirection;
+        if (!_controller.isGrounded)
+            _verticalVelocity += _gravityForce * Time.fixedDeltaTime;
+        if (input.magnitude > _senseMoving)
+            _moveDirection = _currentMovement.ReadMovement(
+                input, _gravityForce, _verticalVelocity, _cameraRotate);
+        else _moveDirection  = _currentMovement.ReadMovement(
+            Vector2.zero, _gravityForce, _verticalVelocity, _cameraRotate);;
+
     }
     
     private void UpdateSpeed()
     {
-        if (!IsMoving()) return;
+        if (!IsMoving())
+        {
+            _currentSpeed = _speedWalk;
+            return;
+        }
         
         _currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, _acceleration * Time.fixedDeltaTime);
         
@@ -87,18 +135,15 @@ public class PlayerMovement : MonoBehaviour
             _currentSpeed = _targetSpeed;
     }
     
-
-    private void Rotate()
-    {
-        var rotateBody = new Vector3(0, _cameraRotate.eulerAngles.y, 0);
-        transform.rotation = Quaternion.Euler(rotateBody);
-    }
-    
     private void Move()
     {
-        Vector3 move = _moveDirection * _currentSpeed * Time.fixedDeltaTime;
-        
-        _controller.Move(move);
+        Vector3 horizontal = new Vector3(_moveDirection.x, 0, _moveDirection.z) * _currentSpeed;
+
+        Vector3 vertical = new Vector3(0, _moveDirection.y, 0);
+
+        Vector3 finalMove = (horizontal + vertical) * Time.fixedDeltaTime;
+
+        _controller.Move(finalMove);
     }
 
     private bool IsMoving()
@@ -106,10 +151,10 @@ public class PlayerMovement : MonoBehaviour
         var move = _playerInput.Player.Move.ReadValue<Vector2>();
         return move.magnitude > 0.2f;
     }
+    
     private void FixedUpdate()
     {
         UpdateSpeed();
         Move();
-        Rotate();
     }
 }
