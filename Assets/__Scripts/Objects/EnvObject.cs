@@ -1,25 +1,31 @@
-﻿namespace __Scripts.Objects
+﻿using __Scripts.System;
+using UnityEngine;
+
+namespace __Scripts.Objects
 {
-    public class EnvObject : InteractableObject
+    public abstract class EnvObject : InteractableObject
     {
+        [SerializeField] protected SerializableDictionary<string, AnimationClip> _animationClips;
         public override void Interact()
         {
-            throw new System.NotImplementedException();
+            
         }
+        
+        public abstract void PlayAnimation();
 
         public override bool CanInteract()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         public override void OnFocusEnter()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void OnFocusExit()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

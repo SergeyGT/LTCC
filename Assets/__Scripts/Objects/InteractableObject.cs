@@ -6,7 +6,7 @@ namespace __Scripts.Objects
 {
     public abstract class InteractableObject : MonoBehaviour, Interactable
     {
-        [SerializeField] private TypeInteractable _typeInteractable;
+        [SerializeField] protected TypeInteractable _typeInteractable;
         public abstract void Interact();
         public abstract bool CanInteract();
         public abstract void OnFocusEnter();
