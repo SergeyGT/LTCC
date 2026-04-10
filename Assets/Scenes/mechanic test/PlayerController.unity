@@ -3045,10 +3045,11 @@ GameObject:
   - component: {fileID: 446344671}
   - component: {fileID: 446344670}
   - component: {fileID: 446344668}
+  - component: {fileID: 446344672}
   m_Layer: 0
   m_Name: FP_Camera
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3065,8 +3066,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
-    Enabled: 0
-    m_Value: 0
+    Enabled: 1
+    m_Value: 1
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -3198,6 +3199,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineHardLockToTarget
   Damping: 0
+--- !u!114 &446344672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446344665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd1d30a7fd34c2fae492cb805f0b99d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::__Scripts.Cameras.Camera
+  _sideCamera: first
 --- !u!1 &519666655
 GameObject:
   m_ObjectHideFlags: 0
@@ -3329,11 +3343,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce1dafbceec8364da5fcd3eb3ef0c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  _speedWalk: 3
+  _speedWalk: 4
   _speedRun: 6
   _cameraRotate: {fileID: 446344667}
   _currentSpeed: 0
   _acceleration: 0.8
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   _gravityForce: -2
   _jumpForce: 2.5
@@ -3343,6 +3358,12 @@ MonoBehaviour:
   _senseMoving: 0.1
   _rotationSpeed: 620
 >>>>>>> Stashed changes
+=======
+  _gravityForce: -2.5
+  _jumpForce: 5
+  _senseMoving: 0.1
+  _rotationSpeed: 540
+>>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!143 &519666662
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3368,6 +3389,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 --- !u!1 &634249570
@@ -3419,6 +3441,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!1 &840306905
 GameObject:
   m_ObjectHideFlags: 0
@@ -3486,7 +3510,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerCameraView
   _virtualCamera: {fileID: 1616005636}
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!43 &930689400
 Mesh:
   m_ObjectHideFlags: 0
@@ -4244,7 +4271,7 @@ MonoBehaviour:
     DefaultMode: 2
   DefaultBlend:
     Style: 1
-    Time: 2
+    Time: 0.4
     CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -4252,8 +4279,11 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!1 &1616005633
 GameObject:
   m_ObjectHideFlags: 0
@@ -4265,7 +4295,10 @@ GameObject:
   - component: {fileID: 1616005637}
   - component: {fileID: 1616005636}
   - component: {fileID: 1616005639}
+<<<<<<< HEAD
   - component: {fileID: 1616005640}
+=======
+>>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
   - component: {fileID: 1616005638}
   m_Layer: 0
   m_Name: SideCamera
@@ -4376,6 +4409,7 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+<<<<<<< HEAD
 --- !u!114 &1616005640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4393,6 +4427,8 @@ MonoBehaviour:
   AmplitudeGain: 1
   FrequencyGain: 1
   m_NoiseOffsets: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!1 &1629408084
 GameObject:
   m_ObjectHideFlags: 0
@@ -4424,7 +4460,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!1 &1727855545
 GameObject:
   m_ObjectHideFlags: 0
@@ -4781,6 +4820,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1793396097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1793396099}
+  - component: {fileID: 1793396098}
+  - component: {fileID: 1793396100}
+  m_Layer: 0
+  m_Name: CameraManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1793396098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793396097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd766fe6aa04ce74dbf0eda0a6eb3fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraViewChanger
+  _virtualCameras:
+  - {fileID: 1616005636}
+  - {fileID: 446344666}
+--- !u!4 &1793396099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793396097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 27.005, y: 4.58728, z: 75.39261}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1793396100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793396097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56bb58ba4ed44968277da04dc6213cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::__Scripts.Player.ChangerMovement
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4791,11 +4890,17 @@ SceneRoots:
   - {fileID: 1727855551}
   - {fileID: 446344667}
   - {fileID: 50669532}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
   - {fileID: 1616005637}
   - {fileID: 840306907}
   - {fileID: 1629408085}
   - {fileID: 1793396099}
+<<<<<<< HEAD
   - {fileID: 634249572}
 >>>>>>> Stashed changes
+=======
+>>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
