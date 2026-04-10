@@ -8,6 +8,16 @@ namespace __Scripts.Player
     public class ChangerMovement : MonoBehaviour
     {
         public static event UnityAction<IPlayerMovement> changeMovement;
+
+        private IPlayerMovement sidePerson;
+        private IPlayerMovement firstPerson;
+
+        private void Awake()
+        {
+            sidePerson = gameObject.AddComponent<SidePersonMovement>();
+            firstPerson = gameObject.AddComponent<FirstPersonMovement>();
+        }
+
         private void OnEnable()
         {
             CameraViewChanger.changeCameraView += ChangeMovement;
@@ -22,11 +32,11 @@ namespace __Scripts.Player
         {
             if (side == "side")
             {
-                changeMovement?.Invoke(new SidePersonMovement());
+                changeMovement?.Invoke(sidePerson);
             }
             else if (side == "first")
             {
-                changeMovement?.Invoke(new FirstPersonMovement());
+                changeMovement?.Invoke(firstPerson);
             }
             
         }
