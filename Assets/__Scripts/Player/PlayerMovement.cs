@@ -61,11 +61,51 @@ public class PlayerMovement : MonoBehaviour
        if(_controller.isGrounded) _verticalVelocity = _jumpForce;
     } 
     
+<<<<<<< Updated upstream
     private void Update() => ReadMovement();
+=======
+    private void SwitchMovement(IPlayerMovement newMovement)
+    {
+        _currentMovement = newMovement;
+    }
+
+    private void ChangeCamera(Transform newCamera)
+    {
+        _cameraRotate =  newCamera;
+    }
+
+    private void Update()
+    {
+        ReadMove();
+    }
+
+    private void RotateCharacter()
+    {
+        if (_moveDirection.magnitude > 0.1f)
+        {
+            _targetRotation = _currentMovement.Rotation(_cameraRotate);
+        }
+        
+        transform.rotation = Quaternion.RotateTowards(
+            transform.rotation, 
+            _targetRotation, 
+            _rotationSpeed * Time.fixedDeltaTime 
+        );
+    }
+>>>>>>> Stashed changes
     
     private void ReadMovement()
     {
+<<<<<<< Updated upstream
         var directionInput = _playerInput.Player.Move.ReadValue<Vector2>();
+=======
+        Vector2 input =  _playerInput.Player.Move.ReadValue<Vector2>();
+        
+        if (!_controller.isGrounded)
+            _verticalVelocity += _gravityForce * Time.fixedDeltaTime;
+        _moveDirection = _currentMovement.ReadMovement(
+                input, _gravityForce, _verticalVelocity, _cameraRotate);
+>>>>>>> Stashed changes
 
         _verticalVelocity += _gravityForce * Time.fixedDeltaTime;
         
@@ -110,6 +150,10 @@ public class PlayerMovement : MonoBehaviour
     {
         UpdateSpeed();
         Move();
+<<<<<<< Updated upstream
         Rotate();
+=======
+        RotateCharacter();
+>>>>>>> Stashed changes
     }
 }
