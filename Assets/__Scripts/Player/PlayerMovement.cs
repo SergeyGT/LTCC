@@ -87,7 +87,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void ReadMove()
     {
-        _verticalVelocity += _gravityForce * Time.fixedDeltaTime;
+        if (!_controller.isGrounded)
+            _verticalVelocity += _gravityForce * Time.fixedDeltaTime;
+        
         _moveDirection = _currentMovement.ReadMovement(
             _playerInput.Player.Move.ReadValue<Vector2>(), _gravityForce, _verticalVelocity, _cameraRotate);
         
@@ -95,7 +97,11 @@ public class PlayerMovement : MonoBehaviour
     
     private void UpdateSpeed()
     {
-        if (!IsMoving()) return;
+        if (!IsMoving())
+        {
+            _currentSpeed = _speedWalk;
+            return;
+        }
         
         _currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, _acceleration * Time.fixedDeltaTime);
         
@@ -106,7 +112,6 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         Vector3 move = _moveDirection * _currentSpeed * Time.fixedDeltaTime;
-        
         _controller.Move(move);
     }
 
