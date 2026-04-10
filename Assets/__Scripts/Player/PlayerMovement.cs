@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using __Scripts.Player;
 using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _acceleration;
     [SerializeField] private float _gravityForce;
     [SerializeField] private float _jumpForce;
+    [SerializeField] private float _senseMoving;
     
     private CharacterController _controller;
     private IPlayerMovement _currentMovement;
@@ -87,12 +89,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void ReadMove()
     {
+        Vector2 input =  _playerInput.Player.Move.ReadValue<Vector2>();
+        
         if (!_controller.isGrounded)
             _verticalVelocity += _gravityForce * Time.fixedDeltaTime;
-        
-        _moveDirection = _currentMovement.ReadMovement(
-            _playerInput.Player.Move.ReadValue<Vector2>(), _gravityForce, _verticalVelocity, _cameraRotate);
-        
+        if (input.magnitude > _senseMoving)
+            _moveDirection = _currentMovement.ReadMovement(
+                input, _gravityForce, _verticalVelocity, _cameraRotate);
+        else _moveDirection  = _currentMovement.ReadMovement(
+            Vector2.zero, _gravityForce, _verticalVelocity, _cameraRotate);;
+
     }
     
     private void UpdateSpeed()
@@ -111,8 +117,13 @@ public class PlayerMovement : MonoBehaviour
     
     private void Move()
     {
-        Vector3 move = _moveDirection * _currentSpeed * Time.fixedDeltaTime;
-        _controller.Move(move);
+        Vector3 horizontal = new Vector3(_moveDirection.x, 0, _moveDirection.z) * _currentSpeed;
+
+        Vector3 vertical = new Vector3(0, _moveDirection.y, 0);
+
+        Vector3 finalMove = (horizontal + vertical) * Time.fixedDeltaTime;
+
+        _controller.Move(finalMove);
     }
 
     private bool IsMoving()
