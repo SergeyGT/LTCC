@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using __Scripts.Cameras;
 using __Scripts.Player;
 using NUnit.Framework;
 using UnityEngine;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine.Events;
-using Camera = __Scripts.Cameras.Camera;
+using Camera = __Scripts.Cameras.CameraData;
 
 public class CameraViewChanger : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class CameraViewChanger : MonoBehaviour
     {
         CinemachineCamera currentCamera = FindCameraWithHighPriority();
         (currentCamera.Priority, _camera.Priority) = (_camera.Priority, currentCamera.Priority);
-        changeCameraView?.Invoke(_camera.GetComponent<Camera>().GetSideCamera());
+        changeCameraView?.Invoke(_camera.GetComponent<CameraData>().GetSideCamera());
         changeCameraRotate?.Invoke(_camera.GetComponent<Transform>());
     }
 

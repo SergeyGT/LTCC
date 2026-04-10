@@ -2,7 +2,7 @@
 
 namespace __Scripts.Cameras
 {
-    public class Camera : MonoBehaviour
+    public class CameraData : MonoBehaviour
     {
         public string _sideCamera;
 
