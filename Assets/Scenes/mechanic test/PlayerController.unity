@@ -3348,22 +3348,10 @@ MonoBehaviour:
   _cameraRotate: {fileID: 446344667}
   _currentSpeed: 0
   _acceleration: 0.8
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-  _gravityForce: -2
-  _jumpForce: 2.5
-=======
   _gravityForce: -2.5
   _jumpForce: 4
   _senseMoving: 0.1
   _rotationSpeed: 620
->>>>>>> Stashed changes
-=======
-  _gravityForce: -2.5
-  _jumpForce: 5
-  _senseMoving: 0.1
-  _rotationSpeed: 540
->>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!143 &519666662
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3389,9 +3377,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
 --- !u!1 &634249570
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,8 +3426,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
->>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!1 &840306905
 GameObject:
   m_ObjectHideFlags: 0
@@ -3510,10 +3493,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerCameraView
   _virtualCamera: {fileID: 1616005636}
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!43 &930689400
 Mesh:
   m_ObjectHideFlags: 0
@@ -4279,11 +4258,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!1 &1616005633
 GameObject:
   m_ObjectHideFlags: 0
@@ -4295,10 +4269,7 @@ GameObject:
   - component: {fileID: 1616005637}
   - component: {fileID: 1616005636}
   - component: {fileID: 1616005639}
-<<<<<<< HEAD
   - component: {fileID: 1616005640}
-=======
->>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
   - component: {fileID: 1616005638}
   m_Layer: 0
   m_Name: SideCamera
@@ -4409,7 +4380,6 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
-<<<<<<< HEAD
 --- !u!114 &1616005640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4427,8 +4397,6 @@ MonoBehaviour:
   AmplitudeGain: 1
   FrequencyGain: 1
   m_NoiseOffsets: {x: 0, y: 0, z: 0}
-=======
->>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!1 &1629408084
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,10 +4428,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
 --- !u!1 &1727855545
 GameObject:
   m_ObjectHideFlags: 0
@@ -4890,17 +4854,8 @@ SceneRoots:
   - {fileID: 1727855551}
   - {fileID: 446344667}
   - {fileID: 50669532}
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
   - {fileID: 1616005637}
   - {fileID: 840306907}
   - {fileID: 1629408085}
   - {fileID: 1793396099}
-<<<<<<< HEAD
   - {fileID: 634249572}
->>>>>>> Stashed changes
-=======
->>>>>>> 18ab58dca7d25728af212e75d5eabf98cfd6703d
