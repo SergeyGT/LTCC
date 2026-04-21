@@ -4,6 +4,7 @@ using System.ComponentModel;
 using __Scripts.Cameras;
 using __Scripts.Player;
 using NUnit.Framework;
+using R3;
 using UnityEngine;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
@@ -15,12 +16,25 @@ public class CameraViewChanger : MonoBehaviour
     public static event UnityAction<string> changeCameraView;
     public static event UnityAction<Transform> changeCameraRotate;
     
+    private TriggerCameraView _changeCameraView;
+    private CompositeDisposable _disposable = new CompositeDisposable();
+    
     [SerializeField] private List<CinemachineCamera> _virtualCameras;
+    
     private CinemachineCamera _currentCamera => FindCameraWithHighPriority();
 
     private void Awake()
     {
         TriggerCameraViewOnchangeCamera(_currentCamera);
+    }
+
+    private void Start()
+    {
+        _changeCameraView.
+            _changeCamera.
+            Subscribe(camera => TriggerCameraViewOnchangeCamera(camera)).
+            AddTo(_disposable);
+        
     }
 
     private void OnEnable()

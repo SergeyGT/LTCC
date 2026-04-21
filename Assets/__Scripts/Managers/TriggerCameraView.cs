@@ -1,4 +1,5 @@
 using System;
+using R3;
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Events;
@@ -7,6 +8,8 @@ using UnityEngine.Events;
 public class TriggerCameraView : MonoBehaviour
 {
     public static event UnityAction<CinemachineCamera> changeCamera;
+    
+    public readonly Subject<CinemachineCamera> _changeCamera = new Subject<CinemachineCamera>();
     
     [Header("Камера на которую произвести переключение")]
     [SerializeField] private CinemachineCamera _virtualCamera;
@@ -19,6 +22,7 @@ public class TriggerCameraView : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        _changeCamera.OnNext(_virtualCamera);
         changeCamera?.Invoke(_virtualCamera);
         _collider.enabled = false;
     }
