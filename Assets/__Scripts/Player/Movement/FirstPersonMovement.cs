@@ -2,7 +2,7 @@
 
 namespace __Scripts.Player
 {
-    public class FirstPersonMovement : MonoBehaviour, IPlayerMovement
+    public class FirstPersonMovement : IPlayerMovement
     {
         public Quaternion Rotation(Transform cameraRotate)
         {

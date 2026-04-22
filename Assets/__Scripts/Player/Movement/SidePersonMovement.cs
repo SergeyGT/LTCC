@@ -1,9 +1,8 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace __Scripts.Player
 {
-    public class SidePersonMovement : MonoBehaviour, IPlayerMovement
+    public class SidePersonMovement : IPlayerMovement
     {
         private Vector3 _moveDirection;
         private Vector3 _lastHorizontalDirection = Vector3.forward;

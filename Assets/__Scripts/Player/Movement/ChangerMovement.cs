@@ -2,6 +2,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace __Scripts.Player
 {
@@ -10,12 +11,12 @@ namespace __Scripts.Player
         public static event UnityAction<IPlayerMovement> changeMovement;
 
         private IPlayerMovement sidePerson;
-        private IPlayerMovement firstPerson;
+        [Inject] private IPlayerMovement firstPerson;
 
         private void Awake()
         {
-            sidePerson = gameObject.AddComponent<SidePersonMovement>();
-            firstPerson = gameObject.AddComponent<FirstPersonMovement>();
+            sidePerson = new SidePersonMovement();
+            firstPerson = new FirstPersonMovement();
         }
 
         private void OnEnable()

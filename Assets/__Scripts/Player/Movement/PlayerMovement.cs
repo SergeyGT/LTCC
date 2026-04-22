@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,14 +20,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 540f;
     
     private CharacterController _controller;
-    private IPlayerMovement _currentMovement;
+    [Inject] private IPlayerMovement _currentMovement;
     private Vector3 _moveDirection;
     private PlayerInput _playerInput;
     private float _targetSpeed;
     private Quaternion _targetRotation;
     private float _verticalVelocity;
     
-    private void Awake()
+    public void Awake()
     {
         _playerInput = new PlayerInput();
         _playerInput.Player.Enable();
@@ -34,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _currentSpeed = _speedWalk;
         _targetSpeed = _speedWalk;
-        _currentMovement = gameObject.AddComponent<FirstPersonMovement>();
     }
 
     

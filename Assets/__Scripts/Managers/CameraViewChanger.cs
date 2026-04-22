@@ -16,8 +16,6 @@ public class CameraViewChanger : MonoBehaviour
     public static event UnityAction<string> changeCameraView;
     public static event UnityAction<Transform> changeCameraRotate;
     
-    private TriggerCameraView _changeCameraView;
-    private CompositeDisposable _disposable = new CompositeDisposable();
     
     [SerializeField] private List<CinemachineCamera> _virtualCameras;
     
@@ -26,15 +24,6 @@ public class CameraViewChanger : MonoBehaviour
     private void Awake()
     {
         TriggerCameraViewOnchangeCamera(_currentCamera);
-    }
-
-    private void Start()
-    {
-        _changeCameraView.
-            _changeCamera.
-            Subscribe(camera => TriggerCameraViewOnchangeCamera(camera)).
-            AddTo(_disposable);
-        
     }
 
     private void OnEnable()
@@ -73,7 +62,4 @@ public class CameraViewChanger : MonoBehaviour
         
         return maxPriorityCamera;
     }
-
-
-
 }
