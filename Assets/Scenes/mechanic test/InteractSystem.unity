@@ -7967,6 +7967,7 @@ GameObject:
   - component: {fileID: 5734023063748036595}
   - component: {fileID: 5734023063748036594}
   - component: {fileID: 5734023063748036593}
+  - component: {fileID: 5734023063748036596}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Untagged
@@ -8506,12 +8507,34 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.02, z: 0}
+--- !u!95 &5734023063748036596
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4960863647798205770}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 94d7baa07add97f4bbcf1f89c88ba25e, type: 3}
+  m_Controller: {fileID: 9100000, guid: 8c91b8f006535654f8240bab7b51b59a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5743564481770625221
 GameObject:
   m_ObjectHideFlags: 0
@@ -10699,9 +10722,9 @@ SceneRoots:
   - {fileID: 1926529294}
   - {fileID: 840306907}
   - {fileID: 1194750773}
+  - {fileID: 5734023063748036592}
   - {fileID: 519666659}
   - {fileID: 1629408085}
   - {fileID: 1793396099}
   - {fileID: 634249572}
   - {fileID: 1949996613}
-  - {fileID: 5734023063748036592}
