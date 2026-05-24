@@ -6,10 +6,11 @@ public class PlayerInstaller : MonoInstaller
 {
     override public void InstallBindings()
     {
+        Container.Bind<PlayerMovement>().FromComponentInHierarchy().AsSingle();
         Container.Bind<IPlayerMovement>().
             To<FirstPersonMovement>().
             AsSingle();
         
-        Container.Bind<IAnimationHandler>().To<PlayerAnimator>().AsSingle();
+        Container.Bind<IAnimationHandler>().To<PlayerAnimator>().FromNewComponentOnNewGameObject().AsSingle();
     }
 }

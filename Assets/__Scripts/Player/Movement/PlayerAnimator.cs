@@ -3,18 +3,24 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour, IAnimationHandler
 {
+    private Animator _animator;
+
+    public void SetAnimator(Animator animator)
+    {
+        _animator = animator;
+    }
     public void TriggerJump()
     {
-        throw new System.NotImplementedException();
+        print("Jump");
     }
 
     public void TriggerSwitchMovement()
     {
-        throw new System.NotImplementedException();
+        print("Switch Movement");
     }
 
     public void SetSpeed(float speed)
     {
-        throw new System.NotImplementedException();
+        print("Speed: " + speed);
     }
 }

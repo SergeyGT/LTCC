@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController _controller;
     [Inject] private IPlayerMovement _currentMovement;
     [Inject] private IAnimationHandler _animationHandler;
+    private Animator _animator;
     private Vector3 _moveDirection;
     private PlayerInput _playerInput;
     private float _targetSpeed;
@@ -34,10 +35,17 @@ public class PlayerMovement : MonoBehaviour
         _playerInput.Player.Enable();
         _playerInput.UI.Enable();
         _controller = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
         _currentSpeed = _speedWalk;
         _targetSpeed = _speedWalk;
     }
 
+    [Inject]
+    public void Construct(IAnimationHandler animationHandler)
+    {
+        _animationHandler = animationHandler;
+        _animationHandler.SetAnimator(_animator);
+    }
     
     private void OnEnable()
     {
@@ -75,7 +83,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext ctx)
     {
-       if(_controller.isGrounded) _verticalVelocity = _jumpForce;
+        if (_controller.isGrounded)
+        {
+            _verticalVelocity = _jumpForce;
+            _animationHandler.TriggerJump();
+        }
     }
     
     private void RotateCharacter()
