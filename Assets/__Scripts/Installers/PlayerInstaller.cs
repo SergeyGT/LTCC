@@ -9,5 +9,7 @@ public class PlayerInstaller : MonoInstaller
         Container.Bind<IPlayerMovement>().
             To<FirstPersonMovement>().
             AsSingle();
+        
+        Container.Bind<IAnimationHandler>().To<PlayerAnimator>().AsSingle();
     }
 }

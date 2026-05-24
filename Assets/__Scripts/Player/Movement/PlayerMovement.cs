@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     
     private CharacterController _controller;
     [Inject] private IPlayerMovement _currentMovement;
+    [Inject] private IAnimationHandler _animationHandler;
     private Vector3 _moveDirection;
     private PlayerInput _playerInput;
     private float _targetSpeed;

@@ -1,16 +1,20 @@
+using __Scripts.Player;
 using UnityEngine;
 
-public class PlayerAnimator : MonoBehaviour
+public class PlayerAnimator : MonoBehaviour, IAnimationHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void TriggerJump()
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TriggerSwitchMovement()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public void SetSpeed(float speed)
+    {
+        throw new System.NotImplementedException();
     }
 }
