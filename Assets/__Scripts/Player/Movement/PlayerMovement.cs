@@ -154,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
     private bool IsMoving()
     {
         var move = _playerInput.Player.Move.ReadValue<Vector2>();
-        return move.magnitude > 0.2f;
+        return move.magnitude > _senseMoving;
     }
 
     private void FixedUpdate()
