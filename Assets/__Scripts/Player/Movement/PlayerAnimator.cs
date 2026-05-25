@@ -1,3 +1,4 @@
+using System;
 using __Scripts.Player;
 using UnityEngine;
 
@@ -5,22 +6,28 @@ public class PlayerAnimator : MonoBehaviour, IAnimationHandler
 {
     private Animator _animator;
 
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     public void SetAnimator(Animator animator)
     {
-        _animator = animator;
+            
     }
     public void TriggerJump()
     {
-        print("Jump");
+       
     }
 
     public void TriggerSwitchMovement()
     {
-        print("Switch Movement");
+        
     }
 
     public void SetSpeed(float speed)
     {
-        print("Speed: " + speed);
+        _animator.SetFloat("Speed", speed);
+        print(speed);
     }
 }

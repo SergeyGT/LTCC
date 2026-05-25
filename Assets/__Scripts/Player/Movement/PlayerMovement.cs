@@ -21,8 +21,7 @@ public class PlayerMovement : MonoBehaviour
     
     private CharacterController _controller;
     [Inject] private IPlayerMovement _currentMovement;
-    [Inject] private IAnimationHandler _animationHandler;
-    private Animator _animator;
+    [Inject(Id = PlayerInstaller.BindID.Player)] private IAnimationHandler _animationHandler;
     private Vector3 _moveDirection;
     private PlayerInput _playerInput;
     private float _targetSpeed;
@@ -35,16 +34,8 @@ public class PlayerMovement : MonoBehaviour
         _playerInput.Player.Enable();
         _playerInput.UI.Enable();
         _controller = GetComponent<CharacterController>();
-        _animator = GetComponent<Animator>();
         _currentSpeed = _speedWalk;
         _targetSpeed = _speedWalk;
-    }
-
-    [Inject]
-    public void Construct(IAnimationHandler animationHandler)
-    {
-        _animationHandler = animationHandler;
-        _animationHandler.SetAnimator(_animator);
     }
     
     private void OnEnable()
@@ -132,13 +123,21 @@ public class PlayerMovement : MonoBehaviour
         if (!IsMoving())
         {
             _currentSpeed = _speedWalk;
+            _animationHandler.SetSpeed(0);
             return;
         }
         
-        _currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, _acceleration * Time.fixedDeltaTime);
+        SpeedCalc();
         
         if (Mathf.Abs(_currentSpeed - _targetSpeed) < 0.01f)
             _currentSpeed = _targetSpeed;
+        
+        _animationHandler.SetSpeed(_currentSpeed);
+    }
+
+    private void SpeedCalc()
+    {
+        _currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, _acceleration * Time.fixedDeltaTime);
     }
     
     private void Move()
