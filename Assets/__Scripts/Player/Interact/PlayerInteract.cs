@@ -25,7 +25,6 @@ namespace __Scripts.Player.Interact
         private void OnEnable()
         {
             _playerInput.Player.Turnover.performed += ChangeCamera;
-            _playerInput.Player.Turnover.canceled += ChangeCamera;
         }
 
         private void OnDisable()
@@ -36,10 +35,7 @@ namespace __Scripts.Player.Interact
 
         private void ChangeCamera(InputAction.CallbackContext ctx)
         {
-            _currentCamera = CameraViewChanger.Instance._currentCamera;
-            
-            int index = Array.IndexOf(_virtualCameras, _currentCamera);
-            changeCamera?.Invoke(index == 0  ? _virtualCameras[1] : _virtualCameras[0]);
+            ChangeCamera();
         }
 
         private void ChangeCamera()

@@ -6799,6 +6799,7 @@ GameObject:
   - component: {fileID: 8788363409990010890}
   - component: {fileID: 8788363409990010894}
   - component: {fileID: 8788363409990010895}
+  - component: {fileID: 8788363409990010896}
   m_Layer: 0
   m_Name: HumanCharacterDummy_M
   m_TagString: Untagged
@@ -6951,15 +6952,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce1dafbceec8364da5fcd3eb3ef0c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  _speedWalk: 4
-  _speedRun: 6
+  _speedWalk: 1.5
+  _speedRun: 3
   _cameraRotate: {fileID: 446344667}
   _currentSpeed: 0
   _acceleration: 0.8
   _gravityForce: -2.5
   _jumpForce: 4
   _senseMoving: 0.15
-  _rotationSpeed: 620
+  _rotationSpeed: 360
 --- !u!143 &8788363409990010893
 CharacterController:
   m_ObjectHideFlags: 0
@@ -7077,6 +7078,21 @@ MonoBehaviour:
   - {fileID: 6900101841100129287}
   - {fileID: 3303870190161408950}
   - {fileID: 4551452568199400994}
+--- !u!114 &8788363409990010896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8267862733799461555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fdb066adeba4589ba6366117ea67cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::__Scripts.Player.Interact.PlayerInteract
+  _virtualCameras:
+  - {fileID: 446344666}
+  - {fileID: 1616005636}
 --- !u!1 &8845260289959509431
 GameObject:
   m_ObjectHideFlags: 0
