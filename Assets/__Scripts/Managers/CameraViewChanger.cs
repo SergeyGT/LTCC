@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using __Scripts.Cameras;
 using __Scripts.Player;
+using __Scripts.Player.Interact;
 using NUnit.Framework;
 using R3;
 using UnityEngine;
@@ -13,27 +14,36 @@ using Camera = __Scripts.Cameras.CameraData;
 
 public class CameraViewChanger : MonoBehaviour
 {
+    public static CameraViewChanger Instance;
     public static event UnityAction<string> changeCameraView;
     public static event UnityAction<Transform> changeCameraRotate;
     
-    
     [SerializeField] private List<CinemachineCamera> _virtualCameras;
     
-    private CinemachineCamera _currentCamera => FindCameraWithHighPriority();
+    public CinemachineCamera _currentCamera => FindCameraWithHighPriority();
 
     private void Awake()
     {
-        TriggerCameraViewOnchangeCamera(_currentCamera);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            TriggerCameraViewOnchangeCamera(_currentCamera);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnEnable()
     {
-        TriggerCameraView.changeCamera += TriggerCameraViewOnchangeCamera;
+        PlayerInteract.changeCamera += TriggerCameraViewOnchangeCamera;
     }
 
     private void OnDisable()
     {
-        TriggerCameraView.changeCamera -= TriggerCameraViewOnchangeCamera;
+        PlayerInteract.changeCamera -= TriggerCameraViewOnchangeCamera;
     }
 
     private void TriggerCameraViewOnchangeCamera(CinemachineCamera _camera)

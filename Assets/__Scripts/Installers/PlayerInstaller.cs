@@ -1,4 +1,5 @@
 using __Scripts.Player;
+using __Scripts.Player.Interact;
 using UnityEngine;
 using UnityEngine.Android;
 using Zenject;
@@ -13,7 +14,8 @@ public class PlayerInstaller : MonoInstaller
     }
     override public void InstallBindings()
     {
-        Container.Bind<PlayerMovement>().FromComponentInHierarchy().AsSingle();
+        BindControls();
+        
         Container.Bind<IPlayerMovement>().
             To<FirstPersonMovement>().
             AsSingle();
@@ -21,6 +23,22 @@ public class PlayerInstaller : MonoInstaller
         Container.Bind<IAnimationHandler>().
             WithId(BindID.Player).
             To<PlayerAnimator>().
+            FromComponentInHierarchy().
+            AsSingle();
+    }
+
+    private void BindControls()
+    {
+        PlayerInput playerInput = new PlayerInput();
+        Container.Bind<PlayerMovement>().
+            FromComponentInHierarchy().
+            AsSingle();
+        
+        Container.Bind<PlayerInput>().
+            FromInstance(playerInput).
+            AsSingle();
+        
+        Container.Bind<PlayerInteract>().
             FromComponentInHierarchy().
             AsSingle();
     }

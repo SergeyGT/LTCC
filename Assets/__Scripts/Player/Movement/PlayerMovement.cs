@@ -23,14 +23,13 @@ public class PlayerMovement : MonoBehaviour
     [Inject] private IPlayerMovement _currentMovement;
     [Inject(Id = PlayerInstaller.BindID.Player)] private IAnimationHandler _animationHandler;
     private Vector3 _moveDirection;
-    private PlayerInput _playerInput;
+    [Inject] private PlayerInput _playerInput;
     private float _targetSpeed;
     private Quaternion _targetRotation;
     private float _verticalVelocity;
     
     public void Awake()
     {
-        _playerInput = new PlayerInput();
         _playerInput.Player.Enable();
         _playerInput.UI.Enable();
         _controller = GetComponent<CharacterController>();
