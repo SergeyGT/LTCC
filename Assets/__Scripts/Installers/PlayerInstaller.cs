@@ -1,3 +1,4 @@
+using __Scripts.AnimationsController;
 using __Scripts.Player;
 using __Scripts.Player.Interact;
 using UnityEngine;
@@ -41,5 +42,7 @@ public class PlayerInstaller : MonoInstaller
         Container.Bind<PlayerInteract>().
             FromComponentInHierarchy().
             AsSingle();
+        
+        Container.Bind<AnimationController>().FromComponentInHierarchy().AsSingle();
     }
 }
