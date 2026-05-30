@@ -18,9 +18,6 @@ public class AudioManager : MonoBehaviour
     private bool musicOn = true;
     private bool soundsOn = true;
 
-    [SerializeField] protected EventReference buttonClick;
-    [SerializeField] protected EventReference mainMenuMusic;
-
     private void Awake()
     {
         if (Instance != null)
@@ -34,7 +31,7 @@ public class AudioManager : MonoBehaviour
 
         FindListener();
 
-        PlayMusic(mainMenuMusic);
+        //PlayMusic(mainMenuMusic);
     }
 
     private void FindListener()
@@ -94,8 +91,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOnClick()
     {
-        if (soundsOn)
-            RuntimeManager.PlayOneShot(buttonClick);
+        
     }
 
     public void PlayMusic(EventReference music)

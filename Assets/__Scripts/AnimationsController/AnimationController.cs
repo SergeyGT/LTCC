@@ -1,14 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using __Scripts.System;
-using UnityEngine;
+using EventReference = FMODUnity.EventReference;
 
 namespace __Scripts.AnimationsController
 {
     [Serializable]
     public class AnimationController 
     {
-        public SerializableDictionary<TypeSound, AudioClip> audioClips;
+        public SerializableDictionary<TypeSound, EventReference> audioClips;
+
+        public void OneFoot()
+        {
+            //EventReference eventReference = audioClips[TypeSound.Walk];
+        }
     }
 
     [Serializable]
