@@ -6806,6 +6806,7 @@ GameObject:
   - component: {fileID: 8788363409990010894}
   - component: {fileID: 8788363409990010895}
   - component: {fileID: 8788363409990010896}
+  - component: {fileID: 8788363409990010897}
   m_Layer: 0
   m_Name: HumanCharacterDummy_M
   m_TagString: Untagged
@@ -6923,7 +6924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29087e64db86ff34eba2cffc5fdc4d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
-  _speedAnimFactor: 4
+  _speedAnimFactor: 3
 --- !u!95 &8788363409990010891
 Animator:
   serializedVersion: 7
@@ -7099,6 +7100,24 @@ MonoBehaviour:
   _virtualCameras:
   - {fileID: 446344666}
   - {fileID: 1616005636}
+--- !u!114 &8788363409990010897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8267862733799461555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d4544f82804f4583587fc4581679fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::__Scripts.AnimationsController.AnimationController
+  audioClips:
+  - nameOfSound: Walk
+    clips: []
+    surface: 0
+    type: 0
+    pitch: 0
 --- !u!1 &8845260289959509431
 GameObject:
   m_ObjectHideFlags: 0
