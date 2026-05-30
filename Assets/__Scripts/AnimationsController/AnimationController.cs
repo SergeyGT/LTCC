@@ -11,7 +11,7 @@ namespace __Scripts.AnimationsController
     {
         public List<Sound> audioClips;
 
-        public void Step(string clipName)
+        public void Shot(string clipName)
         {
             foreach (Sound clip in audioClips)
             {

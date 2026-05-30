@@ -7114,7 +7114,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::__Scripts.AnimationsController.AnimationController
   audioClips:
   - nameOfSound: Walk
-    clips: []
+    clips:
+    - Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    - Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    - Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
     surface: 0
     type: 0
     pitch: 0
