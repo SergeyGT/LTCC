@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{c8219489-8f0e-46e8-b135-216662ada66b}">
+		<property name="assetPath">
+			<value>VLTCC.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>35.604897959183674</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0164afed-b986-49a5-a0e3-2fe0ca39335b}</destination>
+		</relationship>
+	</object>
+</objects>

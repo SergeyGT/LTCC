@@ -1,0 +1,178 @@
+using System;
+using System.Collections.Generic;
+using __Scripts.Player;
+using NUnit.Framework;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using Zenject;
+
+public class PlayerMovement : MonoBehaviour
+{
+    [SerializeField] private float _speedWalk;
+    [SerializeField] private float _speedRun;
+    [SerializeField] private float _speedCrouch;
+    [SerializeField] private Transform _cameraRotate;
+    [SerializeField] private float _currentSpeed;
+    [SerializeField] private float _acceleration;
+    [SerializeField] private float _gravityForce;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _senseMoving;
+    [SerializeField] private float _rotationSpeed = 540f;
+    
+    private CharacterController _controller;
+    [Inject] private IPlayerMovement _currentMovement;
+    [Inject(Id = PlayerInstaller.BindID.Player)] private IAnimationHandler _animationHandler;
+    private Vector3 _moveDirection;
+    [Inject] private PlayerInput _playerInput;
+    private float _targetSpeed;
+    private Quaternion _targetRotation;
+    private float _verticalVelocity;
+    private bool _isCrouch = false;
+    
+    public void Awake()
+    {
+        _playerInput.Player.Enable();
+        _playerInput.UI.Enable();
+        _controller = GetComponent<CharacterController>();
+        _currentSpeed = _speedWalk;
+        _targetSpeed = _speedWalk;
+    }
+    
+    private void OnEnable()
+    {
+        _playerInput.Player.Sprint.performed += StartSprint;
+        _playerInput.Player.Sprint.canceled += StopSprint;
+        
+        _playerInput.Player.Crouch.performed += Crouch;
+
+        _playerInput.Player.Jump.performed += Jump;
+
+        ChangerMovement.changeMovement += SwitchMovement;
+        CameraViewChanger.changeCameraRotate += ChangeCamera;
+    }
+
+    private void OnDisable()
+    {
+        _playerInput.Player.Sprint.performed -= StartSprint;
+        _playerInput.Player.Sprint.canceled -= StopSprint;
+        
+        _playerInput.Player.Crouch.performed -= Crouch;
+        
+        _playerInput.Player.Jump.performed -= Jump;
+        
+        ChangerMovement.changeMovement -= SwitchMovement;
+        CameraViewChanger.changeCameraRotate -= ChangeCamera;
+        
+        _playerInput.Disable();
+    }
+
+    private void StartSprint(InputAction.CallbackContext ctx)
+    {
+        _targetSpeed = _speedRun;
+    }
+
+    private void StopSprint(InputAction.CallbackContext ctx)
+    {
+        _targetSpeed = _speedWalk;
+    }
+
+    private void Jump(InputAction.CallbackContext ctx)
+    {
+        if (_controller.isGrounded)
+        {
+            _verticalVelocity = _jumpForce;
+            _animationHandler.TriggerJump();
+        }
+    }
+
+    private void Crouch(InputAction.CallbackContext ctx)
+    {
+        _isCrouch = !_isCrouch;
+        _animationHandler.Crouch(_isCrouch);
+    }
+    
+    private void RotateCharacter()
+    {
+        if (_moveDirection.magnitude > 0.1f)
+        {
+            _targetRotation = _currentMovement.Rotation(_cameraRotate);
+        }
+        
+        transform.rotation = Quaternion.RotateTowards(
+            transform.rotation, 
+            _targetRotation, 
+            _rotationSpeed * Time.fixedDeltaTime 
+        );
+    }
+    private void SwitchMovement(IPlayerMovement newMovement)
+    {
+        _currentMovement = newMovement;
+    }
+
+    private void ChangeCamera(Transform newCamera)
+    {
+        _cameraRotate =  newCamera;
+    }
+
+    private void Update() => ReadMove();
+
+    
+    private void ReadMove()
+    {
+        Vector2 input =  _playerInput.Player.Move.ReadValue<Vector2>();
+        
+        if (!_controller.isGrounded)
+            _verticalVelocity += _gravityForce * Time.fixedDeltaTime;
+        _moveDirection = _currentMovement.ReadMovement(
+                input, _gravityForce, _verticalVelocity, _cameraRotate);
+
+    }
+    
+    private void UpdateSpeed()
+    {
+        if (!IsMoving())
+        {
+            _currentSpeed = _speedWalk;
+            _animationHandler.SetSpeed(0);
+            return;
+        }
+        
+        SpeedCalc();
+        
+        if (Mathf.Abs(_currentSpeed - _targetSpeed) < 0.01f)
+            _currentSpeed = _targetSpeed;
+        
+        _animationHandler.SetSpeed(_currentSpeed);
+    }
+
+    private void SpeedCalc() 
+    {
+        if (_isCrouch) _currentSpeed = _speedCrouch;
+        _currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, _acceleration * Time.fixedDeltaTime);
+    }
+    
+    private void Move()
+    {
+        Vector3 horizontal = new Vector3(_moveDirection.x, 0, _moveDirection.z) * _currentSpeed;
+
+        Vector3 vertical = new Vector3(0, _moveDirection.y, 0);
+
+        Vector3 finalMove = (horizontal + vertical) * Time.fixedDeltaTime;
+
+        _controller.Move(finalMove);
+    }
+
+    private bool IsMoving()
+    {
+        var move = _playerInput.Player.Move.ReadValue<Vector2>();
+        return move.magnitude > _senseMoving;
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateSpeed();
+        Move();
+        RotateCharacter();
+    }
+}

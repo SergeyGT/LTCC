@@ -1,4 +1,5 @@
 using System;
+using R3;
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Events;
@@ -22,4 +23,5 @@ public class TriggerCameraView : MonoBehaviour
         changeCamera?.Invoke(_virtualCamera);
         _collider.enabled = false;
     }
+
 }
