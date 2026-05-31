@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private float _targetSpeed;
     private Quaternion _targetRotation;
     private float _verticalVelocity;
+    private bool _isCrouch = false;
     
     public void Awake()
     {
@@ -41,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerInput.Player.Sprint.performed += StartSprint;
         _playerInput.Player.Sprint.canceled += StopSprint;
+        
+        _playerInput.Player.Crouch.performed += Crouch;
 
         _playerInput.Player.Jump.performed += Jump;
 
@@ -52,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerInput.Player.Sprint.performed -= StartSprint;
         _playerInput.Player.Sprint.canceled -= StopSprint;
+        
+        _playerInput.Player.Crouch.performed -= Crouch;
         
         _playerInput.Player.Jump.performed -= Jump;
         
@@ -78,6 +83,12 @@ public class PlayerMovement : MonoBehaviour
             _verticalVelocity = _jumpForce;
             _animationHandler.TriggerJump();
         }
+    }
+
+    private void Crouch(InputAction.CallbackContext ctx)
+    {
+        _isCrouch = !_isCrouch;
+        _animationHandler.Crouch(_isCrouch);
     }
     
     private void RotateCharacter()

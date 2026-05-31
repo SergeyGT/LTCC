@@ -18,9 +18,14 @@ public class PlayerAnimator : MonoBehaviour, IAnimationHandler
     {
             
     }
-    public void TriggerJump()
+    public void Crouch(bool crouch)
     {
        //_animator.SetTrigger("Jump");
+    }
+
+    public void TriggerJump()
+    {
+        
     }
 
     public void TriggerSwitchMovement()
