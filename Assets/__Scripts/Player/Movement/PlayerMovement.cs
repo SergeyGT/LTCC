@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speedWalk;
     [SerializeField] private float _speedRun;
+    [SerializeField] private float _speedCrouch;
     [SerializeField] private Transform _cameraRotate;
     [SerializeField] private float _currentSpeed;
     [SerializeField] private float _acceleration;
@@ -21,27 +22,29 @@ public class PlayerMovement : MonoBehaviour
     
     private CharacterController _controller;
     [Inject] private IPlayerMovement _currentMovement;
+    [Inject(Id = PlayerInstaller.BindID.Player)] private IAnimationHandler _animationHandler;
     private Vector3 _moveDirection;
-    private PlayerInput _playerInput;
+    [Inject] private PlayerInput _playerInput;
     private float _targetSpeed;
     private Quaternion _targetRotation;
     private float _verticalVelocity;
+    private bool _isCrouch = false;
     
     public void Awake()
     {
-        _playerInput = new PlayerInput();
         _playerInput.Player.Enable();
         _playerInput.UI.Enable();
         _controller = GetComponent<CharacterController>();
         _currentSpeed = _speedWalk;
         _targetSpeed = _speedWalk;
     }
-
     
     private void OnEnable()
     {
         _playerInput.Player.Sprint.performed += StartSprint;
         _playerInput.Player.Sprint.canceled += StopSprint;
+        
+        _playerInput.Player.Crouch.performed += Crouch;
 
         _playerInput.Player.Jump.performed += Jump;
 
@@ -53,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerInput.Player.Sprint.performed -= StartSprint;
         _playerInput.Player.Sprint.canceled -= StopSprint;
+        
+        _playerInput.Player.Crouch.performed -= Crouch;
         
         _playerInput.Player.Jump.performed -= Jump;
         
@@ -74,7 +79,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext ctx)
     {
-       if(_controller.isGrounded) _verticalVelocity = _jumpForce;
+        if (_controller.isGrounded)
+        {
+            _verticalVelocity = _jumpForce;
+            _animationHandler.TriggerJump();
+        }
+    }
+
+    private void Crouch(InputAction.CallbackContext ctx)
+    {
+        _isCrouch = !_isCrouch;
+        _animationHandler.Crouch(_isCrouch);
     }
     
     private void RotateCharacter()
@@ -119,13 +134,22 @@ public class PlayerMovement : MonoBehaviour
         if (!IsMoving())
         {
             _currentSpeed = _speedWalk;
+            _animationHandler.SetSpeed(0);
             return;
         }
         
-        _currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, _acceleration * Time.fixedDeltaTime);
+        SpeedCalc();
         
         if (Mathf.Abs(_currentSpeed - _targetSpeed) < 0.01f)
             _currentSpeed = _targetSpeed;
+        
+        _animationHandler.SetSpeed(_currentSpeed);
+    }
+
+    private void SpeedCalc() 
+    {
+        if (_isCrouch) _currentSpeed = _speedCrouch;
+        _currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, _acceleration * Time.fixedDeltaTime);
     }
     
     private void Move()
@@ -142,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
     private bool IsMoving()
     {
         var move = _playerInput.Player.Move.ReadValue<Vector2>();
-        return move.magnitude > 0.2f;
+        return move.magnitude > _senseMoving;
     }
 
     private void FixedUpdate()
