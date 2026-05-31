@@ -6961,6 +6961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   _speedWalk: 1.5
   _speedRun: 3
+  _speedCrouch: 1
   _cameraRotate: {fileID: 446344667}
   _currentSpeed: 0
   _acceleration: 0.8
@@ -7114,25 +7115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::__Scripts.AnimationsController.AnimationController
   audioClips:
   - nameOfSound: Walk
-    clips:
-    - Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
-    - Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
-    - Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+    clips: []
     surface: 0
     type: 0
     pitch: 0

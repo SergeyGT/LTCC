@@ -20,7 +20,7 @@ public class PlayerAnimator : MonoBehaviour, IAnimationHandler
     }
     public void Crouch(bool crouch)
     {
-       //_animator.SetTrigger("Jump");
+       _animator.SetBool("IsCrouch", crouch);
     }
 
     public void TriggerJump()

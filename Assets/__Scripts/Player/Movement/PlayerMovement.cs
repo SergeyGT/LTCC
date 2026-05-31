@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speedWalk;
     [SerializeField] private float _speedRun;
+    [SerializeField] private float _speedCrouch;
     [SerializeField] private Transform _cameraRotate;
     [SerializeField] private float _currentSpeed;
     [SerializeField] private float _acceleration;
@@ -145,8 +146,9 @@ public class PlayerMovement : MonoBehaviour
         _animationHandler.SetSpeed(_currentSpeed);
     }
 
-    private void SpeedCalc()
+    private void SpeedCalc() 
     {
+        if (_isCrouch) _currentSpeed = _speedCrouch;
         _currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, _acceleration * Time.fixedDeltaTime);
     }
     
