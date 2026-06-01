@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: LTCC/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639157577296797417
+  lastModified: 639159396692316262
   FileSizes:
   - Name: Desktop
     Value: 858
@@ -71,7 +71,7 @@ MonoBehaviour:
   - {fileID: 1936561134005986800}
   StringsBanks:
   - {fileID: -8183998889363969255}
-  cacheTime: 639157577303324811
+  cacheTime: 639159396692432314
   cacheVersion: 131636
 --- !u!114 &1926975225956527871
 MonoBehaviour:
@@ -88,7 +88,7 @@ MonoBehaviour:
   Path: LTCC/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639157577296847462
+  lastModified: 639159396692432314
   FileSizes:
   - Name: Desktop
     Value: 494
@@ -108,7 +108,7 @@ MonoBehaviour:
   Path: LTCC/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639157577296786729
+  lastModified: 639159396692301195
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -128,7 +128,7 @@ MonoBehaviour:
   Path: LTCC/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639157577303324811
+  lastModified: 639159396692408097
   FileSizes:
   - Name: Desktop
     Value: 828672
