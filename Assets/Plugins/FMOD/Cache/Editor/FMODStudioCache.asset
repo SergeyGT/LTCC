@@ -15,11 +15,62 @@ MonoBehaviour:
   Path: LTCC/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639159396692316262
+  lastModified: 639160249455171133
   FileSizes:
   - Name: Desktop
-    Value: 858
+    Value: 1076
   Exists: 1
+--- !u!114 &-6275242462360047151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Step1Wood 3/PitchRandomizer
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: PitchRandomizer
+  StudioPath: 
+  Min: 0.9
+  Max: 1.1
+  Default: 1
+  ID:
+    data1: 3660539588
+    data2: 3505069441
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-5209529516950222205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/AnimSounds/Step1Wood 2
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Player/AnimSounds/Step1Wood 2
+  Guid:
+    Data1: 377793224
+    Data2: 1290374565
+    Data3: -390628971
+    Data4: 2137553229
+  Banks:
+  - {fileID: 1926975225956527871}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2721684734802108278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,6 +98,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 35604
+--- !u!114 &-1303048549710480701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/AnimSounds/Step1Wood 3
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Player/AnimSounds/Step1Wood 3
+  Guid:
+    Data1: -792203567
+    Data2: 1191699885
+    Data3: -1578099538
+    Data4: 2121391686
+  Banks:
+  - {fileID: 1926975225956527871}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -6275242462360047151}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,12 +145,15 @@ MonoBehaviour:
   - {fileID: 1926975225956527871}
   EditorEvents:
   - {fileID: -2721684734802108278}
+  - {fileID: 4250298939185524642}
+  - {fileID: -5209529516950222205}
+  - {fileID: -1303048549710480701}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1936561134005986800}
   StringsBanks:
   - {fileID: -8183998889363969255}
-  cacheTime: 639159396692432314
+  cacheTime: 639160266358699120
   cacheVersion: 131636
 --- !u!114 &1926975225956527871
 MonoBehaviour:
@@ -88,10 +170,10 @@ MonoBehaviour:
   Path: LTCC/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639159396692432314
+  lastModified: 639160266358699120
   FileSizes:
   - Name: Desktop
-    Value: 494
+    Value: 18400
   Exists: 1
 --- !u!114 &1936561134005986800
 MonoBehaviour:
@@ -108,11 +190,38 @@ MonoBehaviour:
   Path: LTCC/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639159396692301195
+  lastModified: 639160249455156101
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &4250298939185524642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/AnimSounds/Step1Wood
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Player/AnimSounds/Step1Wood
+  Guid:
+    Data1: -737054963
+    Data2: 1298982187
+    Data3: -2037992278
+    Data4: 1778945723
+  Banks:
+  - {fileID: 1926975225956527871}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6997138853453939482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +237,7 @@ MonoBehaviour:
   Path: LTCC/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639159396692408097
+  lastModified: 639160249461278391
   FileSizes:
   - Name: Desktop
     Value: 828672
