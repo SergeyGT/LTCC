@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{80a0a443-31fd-4eb0-b1e5-7506fbb275e7}">
+		<property name="name">
+			<value>PitchRandomizer</value>
+		</property>
+		<relationship name="folder">
+			<destination>{8c2aa087-ff33-4a7e-a6a9-a55b090cf1b7}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{8f53c95d-cca7-4f9a-9165-e5bc3d789745}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{8f53c95d-cca7-4f9a-9165-e5bc3d789745}">
+		<property name="minimum">
+			<value>0.90000000000000002</value>
+		</property>
+		<property name="maximum">
+			<value>1.1000000000000001</value>
+		</property>
+		<property name="initialValue">
+			<value>1</value>
+		</property>
+		<property name="seekSpeed">
+			<value>0.082000002264976501</value>
+		</property>
+		<property name="seekSpeedDescending">
+			<value>0.082000002264976501</value>
+		</property>
+		<property name="seekSpeedAsymmetric">
+			<value>true</value>
+		</property>
+	</object>
+</objects>

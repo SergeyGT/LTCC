@@ -30,8 +30,6 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         FindListener();
-
-        //PlayMusic(mainMenuMusic);
     }
 
     private void FindListener()
